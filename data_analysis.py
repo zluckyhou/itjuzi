@@ -6,6 +6,9 @@ from dateutil.parser import parse
 import pymysql
 
 
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
+
 def merge_file(path):
     fls = os.listdir(path)
     ls_csv = [i for i in fls if os.path.splitext(i)[1] == '.csv']
@@ -14,7 +17,7 @@ def merge_file(path):
         invest_ls.append(pd.read_csv(path+r'\\'+i,index_col=0,usecols=range(1,9),encoding='gb18030'))
     invest_info = pd.concat(invest_ls,axis=0)
     return invest_info
-path = r'C:\Users\zluck\Documents\统计\IT橘子投资事件分析'
+path = r'C:\Users\zluck\Documents\GitHub\itjuzi'
 invest_info = merge_file(path)
 
 
@@ -56,6 +59,21 @@ for i in invest_info.investor:
     else:
         print (invest_info[invest_info.investor.isnull()])
 
-Series(investors).value_counts()[1:11]
+active_investors = Series(investors).value_counts()
+
+# 构造投资机构云图
+
+ls = []
+for i in zip(active_investors.index,active_investors.values):
+    ls.append(i)
+
+wc = WordCloud(font_path = r'C:\Windows\Fonts\simhei.ttf') #wordcloud默认字体为DroidSansMono,如果要支持中文，需要设置字体
+wc.generate_from_frequencies(ls[1:]) # 投资方未透露的投资事件最多，所以去掉第一个
+
+plt.imshow(wc)
+plt.axis('off')
+plt.show()
+
+
 
 
