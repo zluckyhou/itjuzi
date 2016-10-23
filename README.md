@@ -27,15 +27,15 @@ IT桔子投资事件分析
 
 最早的一笔投资
 
-| date                | link                                      | company       | field    | place | round     | amount     | investor                                                 |
-
-| 1999-06-07 00:00:00 | https://www.itjuzi.com/investevents/10241 | 搜房网-房天下 | 房产服务 | 北京  | A轮       | 数百万美元 | IDG资本  
+date                | link                                      | company       | field    | place | round     | amount     | investor                                                 |
+---|---|---|---|---|---|---|---
+1999-06-07 00:00:00 | https://www.itjuzi.com/investevents/10241 | 搜房网-房天下 | 房产服务 | 北京  | A轮       | 数百万美元 | IDG资本  
 
 **融资轮次超过5次的创业公司都有哪些**
 
-+---------------------------+----------------+
+
 | company                   | count(company) |
-+---------------------------+----------------+
+----------------------------|------------------
 | 滴滴出行                  |             13 |
 | 途牛旅游网                |             10 |
 | 58同城                    |              9 |
