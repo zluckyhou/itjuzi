@@ -50,8 +50,8 @@ cur = conn.cursor()
 # alter table invest_event modify investor varchar(255)
 invest_info.to_sql(name = 'invest_event',con = conn,if_exists = 'replace',flavor = 'mysql',dtype = {'investor':'varchar(255)'})
 
+invest_info = pd.read_csv(r'C:\Users\zluck\Documents\GitHub\itjuzi\invest_event.csv',encoding='gb18030')
 # 最活跃的投资机构都有哪些
-
 investors = []
 for i in invest_info.investor:
     if pd.notnull(i):
@@ -67,13 +67,14 @@ ls = []
 for i in zip(active_investors.index,active_investors.values):
     ls.append(i)
 
-wc = WordCloud(font_path = r'C:\Windows\Fonts\simhei.ttf') #wordcloud默认字体为DroidSansMono,如果要支持中文，需要设置字体
+wc = WordCloud(font_path = r'C:\Windows\Fonts\simkai.ttf') #wordcloud默认字体为DroidSansMono,如果要支持中文，需要设置字体
 wc.generate_from_frequencies(ls[1:]) # 投资方未透露的投资事件最多，所以去掉第一个
 
 plt.imshow(wc)
 plt.axis('off')
 plt.show()
 
-
+# 最早的一笔投资是什么时候
+invest_info.iloc[-1,]
 
 
