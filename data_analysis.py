@@ -50,7 +50,7 @@ cur = conn.cursor()
 # alter table invest_event modify investor varchar(255)
 invest_info.to_sql(name = 'invest_event',con = conn,if_exists = 'replace',flavor = 'mysql',dtype = {'investor':'varchar(255)'})
 
-invest_info = pd.read_csv(r'C:\Users\zluck\Documents\GitHub\itjuzi\invest_event.csv',encoding='gb18030')
+invest_info = pd.read_csv(r'C:\Users\zluck\Documents\GitHub\itjuzi\invest_event.csv',encoding='gb18030',index_col=0)
 # 最活跃的投资机构都有哪些
 investors = []
 for i in invest_info.investor:
@@ -77,4 +77,11 @@ plt.show()
 # 最早的一笔投资是什么时候
 invest_info.iloc[-1,]
 
+# 获得融资最多的创业公司
 
+cnt = invest_info.groupby('company').size().sort_values(ascending=False)
+invest_info['cnt'] = invest_info.company.map(cnt)
+
+invest_info[invest_info.cnt >= 7 ].sort_values(by = 'cnt',ascending=False)
+
+invest_info
