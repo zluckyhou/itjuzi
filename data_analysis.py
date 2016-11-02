@@ -82,6 +82,6 @@ invest_info.iloc[-1,]
 cnt = invest_info.groupby('company').size().sort_values(ascending=False)
 invest_info['cnt'] = invest_info.company.map(cnt)
 
-invest_info[invest_info.cnt >= 7 ].sort_values(by = 'cnt',ascending=False)
+invest_info[invest_info.cnt >= 7 ].sort_values(by = ['cnt','company'],ascending=False)
 
 invest_info
